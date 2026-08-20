@@ -95,7 +95,7 @@ const featuredLessons = allLessons.filter((lesson) => lesson.data.featured);
           {allArticles.slice(0, 3).map((article) => (
             <li>
               <a
-                href={`/articles/${article.slug}/`}
+                href={`/articles/${article.id}/`}
                 class="card block transition-shadow hover:shadow-md"
               >
                 <h3 class="font-medium text-ink">{article.data.title}</h3>
@@ -123,7 +123,7 @@ const featuredLessons = allLessons.filter((lesson) => lesson.data.featured);
           <div class="mt-6 flex flex-wrap gap-4">
             <BuyButton href={featuredCourse.data.checkoutUrl} />
             <a
-              href={`/courses/${featuredCourse.slug}/`}
+              href={`/courses/${featuredCourse.id}/`}
               class="btn-secondary border-canvas/20 bg-transparent text-canvas hover:border-canvas hover:text-canvas"
             >
               Course details

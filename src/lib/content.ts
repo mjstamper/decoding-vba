@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import type { Track } from '../content/config';
+import type { Track } from './types';
 
 export function sortLessons(lessons: CollectionEntry<'lessons'>[]) {
   return [...lessons].sort((a, b) => a.data.order - b.data.order);
@@ -25,7 +25,7 @@ export function getAdjacentLessons(
 }
 
 export function lessonUrl(lesson: CollectionEntry<'lessons'>) {
-  return `/learn/${lesson.data.track}/${lesson.slug}/`;
+  return `/learn/${lesson.data.track}/${lesson.id}/`;
 }
 
 export function formatDate(date: Date) {

@@ -30,7 +30,7 @@ const courses = (await getCollection('courses')).filter((c) => !c.data.draft);
               </p>
             )}
             <h2 class="font-display text-xl font-semibold text-ink">
-              <a href={`/courses/${course.slug}/`} class="hover:text-accent">
+              <a href={`/courses/${course.id}/`} class="hover:text-accent">
                 {course.data.title}
               </a>
             </h2>
@@ -38,7 +38,7 @@ const courses = (await getCollection('courses')).filter((c) => !c.data.draft);
             <p class="mt-4 text-lg font-semibold text-ink">{course.data.price}</p>
             <div class="mt-4 flex flex-wrap gap-3">
               <BuyButton href={course.data.checkoutUrl} />
-              <a href={`/courses/${course.slug}/`} class="btn-secondary">
+              <a href={`/courses/${course.id}/`} class="btn-secondary">
                 View details
               </a>
             </div>

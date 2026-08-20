@@ -4,12 +4,12 @@ import ContentLayout from '../../../layouts/ContentLayout.astro';
 import LessonNav from '../../../components/LessonNav.astro';
 import { site, tracks } from '../../../config/site';
 import { getAdjacentLessons } from '../../../lib/content';
-import type { Track } from '../../../content/config';
+import type { Track } from '../../../lib/types';
 
 export async function getStaticPaths() {
   const lessons = (await getCollection('lessons')).filter((l) => !l.data.draft);
   return lessons.map((lesson) => ({
-    params: { track: lesson.data.track, slug: lesson.slug },
+    params: { track: lesson.data.track, slug: lesson.id },
     props: { lesson, allLessons: lessons },
   }));
 }

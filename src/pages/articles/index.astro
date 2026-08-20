@@ -27,7 +27,7 @@ const articles = (await getCollection('articles'))
         articles.map((article) => (
           <li>
             <a
-              href={`/articles/${article.slug}/`}
+              href={`/articles/${article.id}/`}
               class="card block transition-shadow hover:shadow-md"
             >
               <h2 class="font-medium text-ink">{article.data.title}</h2>

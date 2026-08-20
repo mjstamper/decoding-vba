@@ -1,9 +1,11 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
 
 const trackSchema = z.enum(['beginner', 'intermediate', 'advanced']);
 
 const lessons = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/lessons' }),
   schema: z.object({
     title: z.string(),
     track: trackSchema,
@@ -15,7 +17,7 @@ const lessons = defineCollection({
 });
 
 const articles = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/articles' }),
   schema: z.object({
     title: z.string(),
     summary: z.string(),
@@ -26,7 +28,7 @@ const articles = defineCollection({
 });
 
 const courses = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/courses' }),
   schema: z.object({
     title: z.string(),
     summary: z.string(),
