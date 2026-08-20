@@ -1,0 +1,35 @@
+---
+import { site } from '../config/site';
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-border/80 bg-canvas/90 backdrop-blur-md"
+>
+  <div
+    class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6"
+  >
+    <a
+      href="/"
+      class="font-display text-lg font-semibold tracking-tight text-ink transition-colors hover:text-accent"
+    >
+      {site.name}
+    </a>
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex flex-wrap items-center gap-6 text-sm font-medium text-ink-muted">
+        {
+          site.nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="transition-colors hover:text-accent focus-visible:rounded-sm"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a href="/learn/beginner/" class="btn-primary text-sm"> Start learning </a>
+  </div>
+</header>

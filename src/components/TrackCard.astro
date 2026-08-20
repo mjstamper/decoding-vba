@@ -1,0 +1,28 @@
+---
+import type { Track } from '../content/config';
+import { tracks } from '../config/site';
+
+interface Props {
+  track: Track;
+  lessonCount: number;
+}
+
+const { track, lessonCount } = Astro.props;
+const info = tracks[track];
+---
+
+<a
+  href={info.href}
+  class="card group block transition-shadow hover:shadow-md"
+>
+  <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+    {info.title}
+  </p>
+  <h3 class="mt-2 font-display text-xl font-semibold text-ink group-hover:text-accent">
+    {info.title} track
+  </h3>
+  <p class="mt-2 text-sm leading-relaxed text-ink-muted">{info.description}</p>
+  <p class="mt-4 text-sm font-medium text-ink-muted">
+    {lessonCount} lesson{lessonCount === 1 ? '' : 's'}
+  </p>
+</a>

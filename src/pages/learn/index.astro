@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrackCard from '../components/TrackCard.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../config/site';
+import { getLessonsByTrack } from '../lib/content';
+
+const allLessons = (await getCollection('lessons')).filter((l) => !l.data.draft);
+
+const trackCounts = {
+  beginner: getLessonsByTrack(allLessons, 'beginner').length,
+  intermediate: getLessonsByTrack(allLessons, 'intermediate').length,
+  advanced: getLessonsByTrack(allLessons, 'advanced').length,
+};
+---
+
+<BaseLayout
+  title={`Learn VBA | ${site.name}`}
+  description="Free structured VBA lessons organized into Beginner, Intermediate, and Advanced tracks."
+>
+  <section class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+    <h1 class="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+      Learning paths
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg text-ink-muted">
+      Each track builds practical skills for workplace Excel automation. Lessons are
+      ordered so you can follow the full path or jump to a specific topic.
+    </p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <TrackCard track="beginner" lessonCount={trackCounts.beginner} />
+      <TrackCard track="intermediate" lessonCount={trackCounts.intermediate} />
+      <TrackCard track="advanced" lessonCount={trackCounts.advanced} />
+    </div>
+
+    <div class="mt-12 rounded-2xl border border-border bg-accent-soft/50 p-6">
+      <h2 class="font-display text-xl font-semibold text-ink">How to use these tracks</h2>
+      <ul class="mt-4 space-y-2 text-ink-muted">
+        <li>
+          <strong class="text-ink">Beginner:</strong> VBE basics, variables, loops, and your
+          first useful macro.
+        </li>
+        <li>
+          <strong class="text-ink">Intermediate:</strong> Data structures, error handling, and
+          reusable functions.
+        </li>
+        <li>
+          <strong class="text-ink">Advanced:</strong> Class modules, events, and performance for
+          production-grade tools.
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

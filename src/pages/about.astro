@@ -1,0 +1,49 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import { site } from '../config/site';
+---
+
+<ContentLayout
+  title={`About | ${site.name}`}
+  description="Learn VBA for workplace automation with practical lessons built for finance, operations, and reporting teams."
+>
+  <p>
+    Decoding VBA teaches Excel VBA the way it is used in real workplaces: month-end
+    reporting, data validation, recurring exports, and the messy spreadsheets nobody wants
+    to touch by hand.
+  </p>
+
+  <h2>Who this is for</h2>
+  <ul>
+    <li>Finance and FP&A analysts tired of manual reporting cycles</li>
+    <li>Operations teams with recurring spreadsheet workflows</li>
+    <li>Excel power users ready to move from formulas to macros</li>
+    <li>Managers who need maintainable automation, not one-off hacks</li>
+  </ul>
+
+  <h2>What makes this different</h2>
+  <p>
+    Most VBA tutorials teach syntax in isolation. Decoding VBA organizes content into
+    Beginner, Intermediate, and Advanced tracks, then connects each lesson to workplace
+    scenarios: validation checks, copy-and-filter routines, error handling for production
+    macros, and patterns that survive when someone else inherits your workbook.
+  </p>
+
+  <h2>Free vs paid</h2>
+  <p>
+    All lesson tracks and articles on this site are free. Paid courses cover full
+    project builds with workbooks, walkthroughs, and downloadable templates. Checkout is
+    handled externally so you can start learning immediately without creating an account.
+  </p>
+
+  <h2>About the instructor</h2>
+  <p>
+    Decoding VBA is built by Matthew Stamper, who helps workforce, finance, and operations
+    teams modernize manual processes through automation, analytics, and practical Excel
+    tooling. The focus is on code teams can maintain after the consultant leaves.
+  </p>
+
+  <p>
+    Questions? Email <a href={`mailto:${site.email}`}>{site.email}</a>.
+  </p>
+</ContentLayout>

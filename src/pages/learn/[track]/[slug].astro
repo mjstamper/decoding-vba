@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentLayout from '../../../layouts/ContentLayout.astro';
+import LessonNav from '../../../components/LessonNav.astro';
+import { site, tracks } from '../../../config/site';
+import { getAdjacentLessons } from '../../../lib/content';
+import type { Track } from '../../../content/config';
+
+export async function getStaticPaths() {
+  const lessons = (await getCollection('lessons')).filter((l) => !l.data.draft);
+  return lessons.map((lesson) => ({
+    params: { track: lesson.data.track, slug: lesson.slug },
+    props: { lesson, allLessons: lessons },
+  }));
+}
+
+const { lesson, allLessons } = Astro.props;
+const { Content } = await render(lesson);
+const { prev, next } = getAdjacentLessons(allLessons, lesson);
+const trackInfo = tracks[lesson.data.track as Track];
+---
+
+<ContentLayout
+  title={`${lesson.data.title} | ${site.name}`}
+  description={lesson.data.summary}
+  eyebrow={`${trackInfo.title} track`}
+>
+  <Content />
+  <LessonNav prev={prev} next={next} />
+  <p class="mt-8">
+    <a
+      href={`/learn/${lesson.data.track}/`}
+      class="text-sm font-semibold text-accent hover:underline"
+    >
+      Back to {trackInfo.title} lessons
+    </a>
+  </p>
+</ContentLayout>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BuyButton from '../components/BuyButton.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../config/site';
+
+const courses = (await getCollection('courses')).filter((c) => !c.data.draft);
+---
+
+<BaseLayout
+  title={`VBA Courses | ${site.name}`}
+  description="Project-based paid VBA courses for workplace automation. Free lesson tracks available separately."
+>
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <h1 class="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+      Courses
+    </h1>
+    <p class="mt-4 text-lg text-ink-muted">
+      Structured, project-based courses for teams who want to go beyond free lessons.
+      All lesson tracks on this site remain free.
+    </p>
+
+    <ul class="mt-10 space-y-6">
+      {
+        courses.map((course) => (
+          <li class="card">
+            {course.data.featured && (
+              <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-accent">
+                Flagship course
+              </p>
+            )}
+            <h2 class="font-display text-xl font-semibold text-ink">
+              <a href={`/courses/${course.slug}/`} class="hover:text-accent">
+                {course.data.title}
+              </a>
+            </h2>
+            <p class="mt-2 text-ink-muted">{course.data.summary}</p>
+            <p class="mt-4 text-lg font-semibold text-ink">{course.data.price}</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <BuyButton href={course.data.checkoutUrl} />
+              <a href={`/courses/${course.slug}/`} class="btn-secondary">
+                View details
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

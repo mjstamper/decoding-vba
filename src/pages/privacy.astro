@@ -1,0 +1,46 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import { site } from '../config/site';
+---
+
+<ContentLayout
+  title={`Privacy Policy | ${site.name}`}
+  description="Privacy policy for decodingvba.com."
+>
+  <p><em>Last updated: August 19, 2026</em></p>
+
+  <h2>Overview</h2>
+  <p>
+    Decoding VBA ("we", "us") operates decodingvba.com. This policy explains what
+    information we collect and how we use it.
+  </p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li>
+      <strong>Analytics:</strong> We may use privacy-friendly analytics to understand page
+      views and traffic sources. No personally identifiable information is required to read
+      free content.
+    </li>
+    <li>
+      <strong>Purchases:</strong> If you buy a course, payment and delivery are handled by
+      our checkout provider (Lemon Squeezy or Gumroad). Their privacy policy applies to
+      transaction data.
+    </li>
+    <li>
+      <strong>Email:</strong> If you contact us at {site.email}, we use your email only to
+      respond to your message.
+    </li>
+  </ul>
+
+  <h2>Cookies</h2>
+  <p>
+    This site is mostly static. Third-party checkout links may set cookies when you visit
+    their pages or complete a purchase.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Privacy questions: <a href={`mailto:${site.email}`}>{site.email}</a>
+  </p>
+</ContentLayout>

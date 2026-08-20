@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../config/site';
+import { formatDate } from '../lib/content';
+
+const articles = (await getCollection('articles'))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime());
+---
+
+<BaseLayout
+  title={`VBA Articles | ${site.name}`}
+  description="In-depth guides on Excel VBA topics for workplace automation."
+>
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <h1 class="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+      VBA articles
+    </h1>
+    <p class="mt-4 text-lg text-ink-muted">
+      Complete guides on specific VBA concepts. Use these alongside the structured lesson
+      tracks.
+    </p>
+
+    <ul class="mt-10 space-y-4">
+      {
+        articles.map((article) => (
+          <li>
+            <a
+              href={`/articles/${article.slug}/`}
+              class="card block transition-shadow hover:shadow-md"
+            >
+              <h2 class="font-medium text-ink">{article.data.title}</h2>
+              <p class="mt-2 text-sm text-ink-muted">{article.data.summary}</p>
+              <p class="mt-3 text-xs text-ink-muted">
+                {formatDate(article.data.publishedDate)}
+                {article.data.tags.length > 0 && (
+                  <span>
+                    {' '}
+                    &middot; {article.data.tags.join(', ')}
+                  </span>
+                )}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

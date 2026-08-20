@@ -1,0 +1,43 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import { site } from '../config/site';
+---
+
+<ContentLayout
+  title={`Terms of Use | ${site.name}`}
+  description="Terms of use for decodingvba.com and Decoding VBA courses."
+>
+  <p><em>Last updated: August 19, 2026</em></p>
+
+  <h2>Acceptance</h2>
+  <p>
+    By using decodingvba.com, you agree to these terms. If you do not agree, please do not
+    use the site.
+  </p>
+
+  <h2>Free content</h2>
+  <p>
+    Lesson tracks and articles on this site are provided for personal and internal business
+    learning. You may not republish our content as your own or scrape the site for
+    commercial redistribution.
+  </p>
+
+  <h2>Paid courses</h2>
+  <ul>
+    <li>Course materials are licensed for your personal or internal business use.</li>
+    <li>Redistributing course files, videos, or workbooks is not permitted.</li>
+    <li>Refund terms are stated on the checkout page at the time of purchase.</li>
+  </ul>
+
+  <h2>Disclaimer</h2>
+  <p>
+    VBA macros can modify workbooks and data. Test code on copies of production files. We
+    are not liable for data loss or business disruption from applying examples on this
+    site.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about these terms: <a href={`mailto:${site.email}`}>{site.email}</a>
+  </p>
+</ContentLayout>
