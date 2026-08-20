@@ -1,0 +1,17 @@
+---
+import { analytics } from '../config/site';
+
+const domain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN ?? analytics.plausibleDomain;
+const disabled = import.meta.env.PUBLIC_PLAUSIBLE_DISABLED === 'true';
+const enabled = import.meta.env.PROD && !disabled && domain.length > 0;
+---
+
+{
+  enabled && (
+    <script
+      defer
+      data-domain={domain}
+      src="https://plausible.io/js/script.js"
+    />
+  )
+}

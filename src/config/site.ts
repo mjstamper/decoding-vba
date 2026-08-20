@@ -12,8 +12,16 @@ export const site = {
     { label: 'Learn', href: '/learn/' },
     { label: 'Articles', href: '/articles/' },
     { label: 'Courses', href: '/courses/' },
+    { label: 'Search', href: '/search/' },
     { label: 'About', href: '/about/' },
   ],
+} as const;
+
+export const analytics = {
+  provider: 'Plausible',
+  plausibleDomain: 'decodingvba.com',
+  policyUrl: 'https://plausible.io/data-policy',
+  sitePolicyUrl: 'https://plausible.io/privacy',
 } as const;
 
 export const tracks: Record<

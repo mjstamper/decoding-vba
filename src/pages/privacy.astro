@@ -1,13 +1,13 @@
 ---
 import ContentLayout from '../layouts/ContentLayout.astro';
-import { site } from '../config/site';
+import { site, analytics } from '../config/site';
 ---
 
 <ContentLayout
   title={`Privacy Policy | ${site.name}`}
   description="Privacy policy for decodingvba.com."
 >
-  <p><em>Last updated: August 19, 2026</em></p>
+  <p><em>Last updated: August 20, 2026</em></p>
 
   <h2>Overview</h2>
   <p>
@@ -15,28 +15,56 @@ import { site } from '../config/site';
     information we collect and how we use it.
   </p>
 
-  <h2>Information we collect</h2>
+  <h2>Analytics</h2>
+  <p>
+    We use <a href="https://plausible.io/" rel="noopener noreferrer" target="_blank">Plausible Analytics</a>,
+    a privacy-friendly analytics service, to understand aggregate traffic on this site.
+  </p>
   <ul>
     <li>
-      <strong>Analytics:</strong> We may use privacy-friendly analytics to understand page
-      views and traffic sources. No personally identifiable information is required to read
-      free content.
+      <strong>Provider:</strong> Plausible Insights OÜ (
+      <a href={analytics.sitePolicyUrl} rel="noopener noreferrer" target="_blank">privacy policy</a>)
     </li>
+    <li>
+      <strong>Data collected:</strong> Page URL, referrer, browser/device type, and general
+      location (country/region). Plausible does not use cookies and does not track you across
+      other websites.
+    </li>
+    <li>
+      <strong>Legal basis:</strong> Legitimate interest in understanding how our free content is
+      used so we can improve it.
+    </li>
+    <li>
+      <strong>Opt-out:</strong> You can block the Plausible script with a browser ad blocker or
+      enable Do Not Track — Plausible respects DNT signals.
+    </li>
+  </ul>
+  <p>
+    See Plausible's <a href={analytics.policyUrl} rel="noopener noreferrer" target="_blank">data policy</a>
+    for full details on what they process.
+  </p>
+
+  <h2>Other information we collect</h2>
+  <ul>
     <li>
       <strong>Purchases:</strong> If you buy a course, payment and delivery are handled by
       our checkout provider (Lemon Squeezy or Gumroad). Their privacy policy applies to
-      transaction data.
+      transaction data — we do not receive your full payment card details.
     </li>
     <li>
       <strong>Email:</strong> If you contact us at {site.email}, we use your email only to
       respond to your message.
     </li>
+    <li>
+      <strong>Search:</strong> On-site search uses Pagefind, which runs in your browser against
+      a static index bundled with the site. Search queries are not sent to our servers.
+    </li>
   </ul>
 
   <h2>Cookies</h2>
   <p>
-    This site is mostly static. Third-party checkout links may set cookies when you visit
-    their pages or complete a purchase.
+    This site does not set analytics cookies. Third-party checkout pages may set cookies when
+    you visit them or complete a purchase.
   </p>
 
   <h2>Contact</h2>

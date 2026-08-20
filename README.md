@@ -17,6 +17,24 @@ npm run dev
 
 Open `http://localhost:4321`.
 
+Search uses Pagefind and only works after a build:
+
+```bash
+npm run build
+npm run preview
+```
+
+Then open `/search/`.
+
+## Analytics
+
+Production builds load [Plausible Analytics](https://plausible.io/) for `decodingvba.com`. Register the domain in your Plausible dashboard before deploying.
+
+Copy [`.env.example`](.env.example) to `.env` if you need to override settings:
+
+- `PUBLIC_PLAUSIBLE_DOMAIN` — defaults to `decodingvba.com`
+- `PUBLIC_PLAUSIBLE_DISABLED=true` — turn off analytics in production builds
+
 ## Build
 
 ```bash
