@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import TrackCard from '../components/TrackCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TrackCard from '../../components/TrackCard.astro';
 import { getCollection } from 'astro:content';
-import { site } from '../config/site';
-import { getLessonsByTrack } from '../lib/content';
+import { site } from '../../config/site';
+import { getLessonsByTrack } from '../../lib/content';
 
 const allLessons = (await getCollection('lessons')).filter((l) => !l.data.draft);
 

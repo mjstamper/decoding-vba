@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { site, tracks } from '../../config/site';
-import { getLessonsByTrack, lessonUrl } from '../../lib/content';
-import type { Track } from '../../lib/types';
+import { site, tracks } from '../../../config/site';
+import { getLessonsByTrack, lessonUrl } from '../../../lib/content';
+import type { Track } from '../../../lib/types';
 
 export async function getStaticPaths() {
   const tracksList: Track[] = ['beginner', 'intermediate', 'advanced'];

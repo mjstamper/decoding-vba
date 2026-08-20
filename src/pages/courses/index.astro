@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import BuyButton from '../components/BuyButton.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BuyButton from '../../components/BuyButton.astro';
 import { getCollection } from 'astro:content';
-import { site } from '../config/site';
+import { site } from '../../config/site';
 
 const courses = (await getCollection('courses')).filter((c) => !c.data.draft);
 ---
