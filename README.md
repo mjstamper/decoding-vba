@@ -26,6 +26,13 @@ npm run preview
 
 Then open `/search/`.
 
+If `npm install` fails with a certificate error on your network, try:
+
+```powershell
+$env:NODE_OPTIONS="--use-system-ca"
+npm install
+```
+
 ## Analytics
 
 Production builds load [Plausible Analytics](https://plausible.io/) for `decodingvba.com`. Register the domain in your Plausible dashboard before deploying.
