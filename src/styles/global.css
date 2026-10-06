@@ -80,6 +80,22 @@
     @apply my-8 border-border;
   }
 
+  .prose-content img {
+    @apply my-6 h-auto w-full max-w-full rounded-xl border border-border bg-surface shadow-sm;
+  }
+
+  .prose-content figure.lesson-figure {
+    @apply my-6;
+  }
+
+  .prose-content figure.lesson-figure img {
+    @apply my-0;
+  }
+
+  .prose-content figcaption {
+    @apply mt-2 text-center text-sm leading-relaxed text-ink-muted;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-hover;
   }
