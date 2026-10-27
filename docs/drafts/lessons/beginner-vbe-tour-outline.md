@@ -108,7 +108,9 @@ Once you add a macro into a workbook, it will need to be saved as a Macro enable
 Some things to practice include changing the message in the MsgBox, creating a second Sub, and displaying the ActiveSheet Name in the MsgBox.
 
 ```vb
-    MsgBox ActiveSheet.name, vbInformation, "Decoding VBA"
+Sub ShowActiveSheetName()
+    MsgBox "Active sheet: " & ActiveSheet.Name, vbInformation, "Decoding VBA"
+End Sub
 ```
 [DecodingVBA-Lesson01-VBE-Tour.xlsm](/downloads/DecodingVBA-Lesson01-VBE-Tour.xlsm)
 

@@ -1,24 +1,51 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ContentLayout from '../../layouts/ContentLayout.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
 import { site } from '../../config/site';
-import { formatDate } from '../../lib/content';
+import { formatDate, getRelatedArticles, tagUrl } from '../../lib/content';
 
 export async function getStaticPaths() {
   const articles = (await getCollection('articles')).filter((a) => !a.data.draft);
-  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article, allArticles: articles },
+  }));
 }
 
-const { article } = Astro.props;
+const { article, allArticles } = Astro.props;
 const { Content } = await render(article);
+const relatedArticles = getRelatedArticles(allArticles, article);
 ---
 
 <ContentLayout
   title={`${article.data.title} | ${site.name}`}
+  heading={article.data.title}
   description={article.data.summary}
   eyebrow={`Published ${formatDate(article.data.publishedDate)}`}
 >
+  {
+    article.data.tags.length > 0 && (
+      <p class="mt-6 flex flex-wrap gap-2">
+        {article.data.tags.map((tag) => (
+          <a
+            href={tagUrl(tag)}
+            class="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-ink-muted transition-colors hover:border-accent hover:text-accent"
+          >
+            {tag.replace(/-/g, ' ')}
+          </a>
+        ))}
+      </p>
+    )
+  }
   <Content />
+  <RelatedContent
+    items={relatedArticles.map((item) => ({
+      title: item.data.title,
+      href: `/articles/${item.id}/`,
+      summary: item.data.summary,
+    }))}
+  />
   <p class="mt-8">
     <a href="/articles/" class="text-sm font-semibold text-accent hover:underline">
       Back to articles

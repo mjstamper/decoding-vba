@@ -64,8 +64,24 @@
     @apply text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent;
   }
 
+  .code-block-wrap {
+    @apply relative mb-6;
+  }
+
+  .code-block-wrap pre {
+    @apply mb-0 overflow-x-auto rounded-xl bg-code-bg p-4 pt-12 text-sm leading-relaxed text-white;
+  }
+
   .prose-content pre {
     @apply mb-6 overflow-x-auto rounded-xl bg-code-bg p-4 text-sm leading-relaxed text-white;
+  }
+
+  .copy-code-btn {
+    @apply absolute top-2 right-2 rounded-lg border border-white/20 bg-white/10 px-2.5 py-1 font-sans text-xs font-semibold text-white transition-colors hover:bg-white/20;
+  }
+
+  .copy-code-btn--success {
+    @apply border-accent bg-accent/90 hover:bg-accent/90;
   }
 
   .prose-content code:not(pre code) {

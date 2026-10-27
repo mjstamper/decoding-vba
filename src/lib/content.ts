@@ -35,3 +35,86 @@ export function formatDate(date: Date) {
     year: 'numeric',
   }).format(date);
 }
+
+export function getAllArticleTags(articles: CollectionEntry<'articles'>[]) {
+  const tags = new Set<string>();
+  for (const article of articles) {
+    if (article.data.draft) continue;
+    for (const tag of article.data.tags) {
+      tags.add(tag);
+    }
+  }
+  return [...tags].sort((a, b) => a.localeCompare(b));
+}
+
+export function tagUrl(tag: string) {
+  return `/articles/tags/${encodeURIComponent(tag)}/`;
+}
+
+export function getRelatedArticles(
+  articles: CollectionEntry<'articles'>[],
+  current: CollectionEntry<'articles'>,
+  limit = 4,
+) {
+  const published = articles.filter((a) => !a.data.draft && a.id !== current.id);
+  const currentTags = new Set(current.data.tags);
+
+  const scored = published
+    .map((article) => ({
+      article,
+      score: article.data.tags.filter((tag) => currentTags.has(tag)).length,
+    }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return (
+        b.article.data.publishedDate.getTime() - a.article.data.publishedDate.getTime()
+      );
+    });
+
+  if (scored.length >= limit) {
+    return scored.slice(0, limit).map(({ article }) => article);
+  }
+
+  const picked = new Set(scored.map(({ article }) => article.id));
+  const fallback = published
+    .filter((a) => !picked.has(a.id))
+    .sort(
+      (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime(),
+    );
+
+  return [...scored.map(({ article }) => article), ...fallback].slice(0, limit);
+}
+
+export function getRelatedLessons(
+  lessons: CollectionEntry<'lessons'>[],
+  current: CollectionEntry<'lessons'>,
+  limit = 4,
+) {
+  const trackLessons = getLessonsByTrack(lessons, current.data.track).filter(
+    (lesson) => lesson.id !== current.id,
+  );
+
+  return trackLessons
+    .sort(
+      (a, b) =>
+        Math.abs(a.data.order - current.data.order) -
+        Math.abs(b.data.order - current.data.order),
+    )
+    .slice(0, limit);
+}
+
+export function getArticlesForTrack(
+  articles: CollectionEntry<'articles'>[],
+  track: Track,
+  excludeId?: string,
+  limit = 3,
+) {
+  return articles
+    .filter((a) => !a.data.draft && a.id !== excludeId)
+    .filter((a) => a.data.tags.includes(track))
+    .sort(
+      (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime(),
+    )
+    .slice(0, limit);
+}

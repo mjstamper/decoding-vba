@@ -2,8 +2,14 @@
 import { getCollection, render } from 'astro:content';
 import ContentLayout from '../../../layouts/ContentLayout.astro';
 import LessonNav from '../../../components/LessonNav.astro';
+import RelatedContent from '../../../components/RelatedContent.astro';
 import { site, tracks } from '../../../config/site';
-import { getAdjacentLessons } from '../../../lib/content';
+import {
+  getAdjacentLessons,
+  getArticlesForTrack,
+  getRelatedLessons,
+  lessonUrl,
+} from '../../../lib/content';
 import type { Track } from '../../../lib/types';
 
 export async function getStaticPaths() {
@@ -18,14 +24,43 @@ const { lesson, allLessons } = Astro.props;
 const { Content } = await render(lesson);
 const { prev, next } = getAdjacentLessons(allLessons, lesson);
 const trackInfo = tracks[lesson.data.track as Track];
+const relatedLessons = getRelatedLessons(allLessons, lesson);
+const allArticles = (await getCollection('articles')).filter((a) => !a.data.draft);
+const trackArticles = getArticlesForTrack(allArticles, lesson.data.track as Track);
 ---
 
 <ContentLayout
   title={`${lesson.data.title} | ${site.name}`}
+  heading={lesson.data.title}
   description={lesson.data.summary}
   eyebrow={`${trackInfo.title} track`}
+  breadcrumbs={[
+    { label: 'Learn', href: '/learn/' },
+    { label: trackInfo.title, href: trackInfo.href },
+    { label: lesson.data.title },
+  ]}
 >
   <Content />
+  <RelatedContent
+    heading="More in this track"
+    items={relatedLessons.map((item) => ({
+      title: item.data.title,
+      href: lessonUrl(item),
+      summary: item.data.summary,
+    }))}
+  />
+  {
+    trackArticles.length > 0 && (
+      <RelatedContent
+        heading="Related articles"
+        items={trackArticles.map((article) => ({
+          title: article.data.title,
+          href: `/articles/${article.id}/`,
+          summary: article.data.summary,
+        }))}
+      />
+    )
+  }
   <LessonNav prev={prev} next={next} />
   <p class="mt-8">
     <a
