@@ -12,6 +12,8 @@ When finished, the file already lives in `src/content/articles/`. Set `draft: fa
 | [vba-msgbox-guide.md](../../src/content/articles/vba-msgbox-guide.md) | `src/content/articles/vba-msgbox-guide.md` |
 | [vba-ranges-and-cells-guide.md](../../src/content/articles/vba-ranges-and-cells-guide.md) | `src/content/articles/vba-ranges-and-cells-guide.md` |
 | [vba-dim-variables-guide.md](../../src/content/articles/vba-dim-variables-guide.md) | `src/content/articles/vba-dim-variables-guide.md` |
+| [vba-for-each-loop-guide.md](../../src/content/articles/vba-for-each-loop-guide.md) | `src/content/articles/vba-for-each-loop-guide.md` |
+| [vba-select-case-guide.md](../../src/content/articles/vba-select-case-guide.md) | `src/content/articles/vba-select-case-guide.md` |
 
 Draft articles are hidden from the site until `draft: false`.
 

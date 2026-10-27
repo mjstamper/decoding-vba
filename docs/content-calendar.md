@@ -2,7 +2,7 @@
 
 **Horizon:** August 2026 – July 2027  
 **Capacity:** 5–10 hours/week  
-**Last updated:** October 5, 2026
+**Last updated:** October 26, 2026
 
 Update this file when you ship content or site features. Flagship lesson target: depth similar to [beginner-first-macro.md](../src/content/lessons/beginner-first-macro.md) (Goal, worked example, mistakes, practice, next step).
 
@@ -13,9 +13,10 @@ Update this file when you ship content or site features. Flagship lesson target:
 | Metric | Target | Current |
 |--------|--------|---------|
 | SEO articles published | 24 | **1** |
-| Article drafts in repo (flip `draft: false` to publish) | — | **4** |
+| Article drafts in repo (`draft: true`) | — | **6** (4 review-ready + 2 scaffolded) |
 | Lessons at flagship depth | 21 + 2 new | **4** (first-macro, vbe-tour, error-handling, class-modules) |
-| Site enhancements | ~12 | **7** |
+| Lessons live as stubs (`draft: false`, not flagship) | — | **17** |
+| Site enhancements | ~12 | **7** (live on GitHub Pages) |
 | Email list | Start Nov 2026; 200+ by Jul 2027 | Not started |
 | Paid course | Soft launch Jul 2027 | Landing page only |
 
@@ -23,14 +24,25 @@ Update this file when you ship content or site features. Flagship lesson target:
 
 **Published articles:** [vba-for-loop-guide.md](../src/content/articles/vba-for-loop-guide.md)
 
-**Draft articles (ready to publish when reviewed):**
+**Draft articles — review-ready (fill `<!-- WRITE -->`, then `draft: false`):**
 
 - [vba-if-statement-guide.md](../src/content/articles/vba-if-statement-guide.md)
 - [vba-msgbox-guide.md](../src/content/articles/vba-msgbox-guide.md)
 - [vba-ranges-and-cells-guide.md](../src/content/articles/vba-ranges-and-cells-guide.md)
 - [vba-dim-variables-guide.md](../src/content/articles/vba-dim-variables-guide.md)
 
+**Draft articles — scaffolded (October slots):**
+
+- [vba-for-each-loop-guide.md](../src/content/articles/vba-for-each-loop-guide.md)
+- [vba-select-case-guide.md](../src/content/articles/vba-select-case-guide.md)
+
+**Lesson outlines (copy into live lesson when flagship-ready):**
+
+- [beginner-option-explicit-outline.md](drafts/lessons/beginner-option-explicit-outline.md) → [beginner-option-explicit.md](../src/content/lessons/beginner-option-explicit.md) *(stub live today)*
+
 Outlines and draft workflow: [docs/drafts/README.md](drafts/README.md)
+
+**Production:** `main` @ GitHub Pages — site features through breadcrumbs + code copy shipped Oct 2026.
 
 ---
 
@@ -74,7 +86,7 @@ Outlines and draft workflow: [docs/drafts/README.md](drafts/README.md)
 **Lessons (flagship upgrade)**
 
 - [x] [beginner-vbe-tour.md](../src/content/lessons/beginner-vbe-tour.md)
-- [ ] [beginner-option-explicit.md](../src/content/lessons/beginner-option-explicit.md) — outline: [beginner-option-explicit-outline.md](drafts/lessons/beginner-option-explicit-outline.md)
+- [ ] [beginner-option-explicit.md](../src/content/lessons/beginner-option-explicit.md) — **flagship upgrade** (stub live); outline: [beginner-option-explicit-outline.md](drafts/lessons/beginner-option-explicit-outline.md)
 
 ### September 2026
 
@@ -100,8 +112,8 @@ Outlines and draft workflow: [docs/drafts/README.md](drafts/README.md)
 
 **Articles**
 
-- [ ] VBA For Each Loop — A Complete Guide *(not started in repo)*
-- [ ] VBA Select Case — A Complete Guide *(not started in repo)*
+- [ ] VBA For Each Loop — write + publish [vba-for-each-loop-guide.md](../src/content/articles/vba-for-each-loop-guide.md) *(scaffold in repo)*
+- [ ] VBA Select Case — write + publish [vba-select-case-guide.md](../src/content/articles/vba-select-case-guide.md) *(scaffold in repo)*
 
 **Lessons**
 
@@ -237,7 +249,7 @@ Check when the lesson matches flagship depth and internal links to related artic
 
 | Month | Organic sessions | Top landing pages | GSC articles indexed | Email subs | Notes |
 |-------|------------------|-------------------|----------------------|------------|-------|
-| Oct 2026 | | | | — | Q1 enhancements shipped |
+| Oct 2026 | | | | — | Q1 enhancements live; VBE tour + Lesson01 xlsm shipped |
 | Nov 2026 | | | | | |
 | Dec 2026 | | | | | |
 | Jan 2027 | | | | | |
@@ -250,13 +262,35 @@ Check when the lesson matches flagship depth and internal links to related artic
 
 ---
 
-## Immediate next (as of Oct 2026)
+## Next sprint (Nov 1–15, 2026)
 
-1. Publish or finish review on the four draft articles (August + September slots).
-2. Upgrade [beginner-option-explicit.md](../src/content/lessons/beginner-option-explicit.md) using [outline](drafts/lessons/beginner-option-explicit-outline.md).
-3. Continue September/October lesson upgrades (ranges, if/select, loops, worksheets).
-4. Draft October articles: For Each loop, Select Case.
-5. Register domain in Plausible if needed.
+Priority order if time is tight:
+
+| # | Ship | Definition of done |
+|---|------|-------------------|
+| 1 | **Option Explicit lesson** | [beginner-option-explicit.md](../src/content/lessons/beginner-option-explicit.md) matches flagship template; links to Dim article + Lesson01 workbook |
+| 2 | **If + MsgBox articles** | Remove outline comments; `draft: false`; internal links to VBE tour + first-macro |
+| 3 | **Ranges + Dim articles** | Same publish checklist; cross-link new Option Explicit lesson |
+| 4 | **For Each + Select Case articles** | Finish scaffolds; publish before upgrading matching beginner lessons |
+| 5 | **Email signup** | Homepage + article footer; link to Starter Checklist PDF (Nov backlog item) |
+
+**Lesson upgrades after Option Explicit (September/October slots):**
+
+1. [beginner-ranges-and-cells.md](../src/content/lessons/beginner-ranges-and-cells.md) — pair with Ranges article
+2. [beginner-if-select-case.md](../src/content/lessons/beginner-if-select-case.md) — pair with If + Select Case articles
+3. [beginner-loops.md](../src/content/lessons/beginner-loops.md) + [beginner-worksheets.md](../src/content/lessons/beginner-worksheets.md)
+
+**Ops (one-time):** Confirm Plausible shows traffic for `decodingvba.com`; spot-check `/search/` and tag pages on production.
+
+---
+
+## Immediate next (rolling)
+
+1. **Lesson 2:** Execute [beginner-option-explicit-outline.md](drafts/lessons/beginner-option-explicit-outline.md) (biggest beginner-track gap after VBE tour).
+2. **SEO batch 1:** Publish If + MsgBox (August calendar carryover).
+3. **SEO batch 2:** Publish Ranges + Dim (September carryover).
+4. **SEO batch 3:** Write and publish For Each + Select Case scaffolds.
+5. **November:** Email capture before pushing more articles without a list.
 
 ---
 
